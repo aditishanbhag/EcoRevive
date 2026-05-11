@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact Tracker – EcoRevive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <a href="marketplace.html" class="left-section">
+    <img src="logo1.png" class="logo-img" alt="EcoRevive">
+    <div class="logo-text">EcoRevive</div>
+  </a>
+  <div class="menu">
+    <a href="marketplace.html">Marketplace</a>
+    <a href="awareness.html">Awareness Hub</a>
+    <a href="tracker.html" class="active">Impact Tracker</a>
+  </div>
+  <div class="sign_in" id="navAuth">
+  <a href="login.html">Sign In</a>
+  <a href="signup.html" class="btn">Get Started</a>
+</div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="tracker-page">
+
+  <h1>Impact <span>Tracker</span></h1>
+  <p class="tracker-desc">Track the collective environmental impact of our community. Every item reused makes a real difference.</p>
+
+  <!-- STATS GRID -->
+  <div class="stats-grid">
+    
+    <div class="stat-card">
+      <h2 id="co2">0</h2>
+      <p class="title">CO₂ Emissions Saved</p>
+      <p class="sub">Live updated from purchases</p>
+    </div>
+
+    <div class="stat-card">
+      <h2 id="items">0</h2>
+      <p class="title">Items Reused</p>
+      <p class="sub">Based on completed orders</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>45K+</h2>
+      <p class="title">Active Community</p>
+      <p class="sub">Members making a difference</p>
+    </div>
+
+    <div class="stat-card">
+      <h2 id="trees">0</h2>
+      <p class="title">Trees Saved</p>
+      <p class="sub">Estimated from CO₂ savings</p>
+    </div>
+
+    <div class="stat-card">
+      <h2 id="water">0</h2>
+      <p class="title">Water Conserved</p>
+      <p class="sub">Through reuse</p>
+    </div>
+
+    <div class="stat-card">
+      <h2 id="energy">0</h2>
+      <p class="title">Energy Saved</p>
+      <p class="sub">Avoided production energy</p>
+    </div>
+
+  </div>
+
+  <!-- CATEGORY (unchanged UI) -->
+  <div class="category-section">
+    <h2>Impact by Category</h2>
+
+    <div class="category">
+      <div class="category-header">
+        <span>Fashion & Clothing</span>
+        <span>Auto calculated</span>
+      </div>
+      <div class="progress-bar"><div class="progress" style="width:35%"></div></div>
+      <p class="percent">Dynamic share</p>
+    </div>
+
+    <div class="category">
+      <div class="category-header">
+        <span>Electronics</span>
+        <span>Auto calculated</span>
+      </div>
+      <div class="progress-bar"><div class="progress" style="width:28%"></div></div>
+      <p class="percent">Dynamic share</p>
+    </div>
+
+    <div class="category">
+      <div class="category-header">
+        <span>Furniture</span>
+        <span>Auto calculated</span>
+      </div>
+      <div class="progress-bar"><div class="progress" style="width:20%"></div></div>
+      <p class="percent">Dynamic share</p>
+    </div>
+
+    <div class="category">
+      <div class="category-header">
+        <span>Books & Media</span>
+        <span>Auto calculated</span>
+      </div>
+      <div class="progress-bar"><div class="progress" style="width:10%"></div></div>
+      <p class="percent">Dynamic share</p>
+    </div>
+
+    <div class="category">
+      <div class="category-header">
+        <span>Sports & Hobbies</span>
+        <span>Auto calculated</span>
+      </div>
+      <div class="progress-bar"><div class="progress" style="width:7%"></div></div>
+      <p class="percent">Dynamic share</p>
+    </div>
+
+    <!-- GROWTH -->
+    <div class="growth-section">
+      <h2>Monthly Growth Trend</h2>
+      <div class="growth-grid">
+        <div class="growth-card"><h3>+23%</h3><p>Items Reused</p></div>
+        <div class="growth-card"><h3>+31%</h3><p>New Members</p></div>
+        <div class="growth-card"><h3>+18%</h3><p>CO₂ Reduced</p></div>
+        <div class="growth-card"><h3>+27%</h3><p>Active Users</p></div>
+      </div>
+      <p class="growth-note">Compared to last month • Updated in real-time</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Join the Movement</h2>
+      <p>Every item you reuse contributes to these numbers.</p>
+      <div class="cta-buttons">
+        <a href="signup.html" class="cta-primary">Create Account</a>
+        <a href="marketplace.html" class="cta-secondary">Explore Marketplace</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo-text">EcoRevive</span>
+      <p>A sustainable marketplace where every transaction helps the planet.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 EcoRevive</span>
+  </div>
+</footer>
+
+<script>
+
+// LOAD IMPACT DATA
+async function loadImpact(){
+  try {
+    const res = await fetch("http://localhost:3000/api/impact");
+    const data = await res.json();
+
+    document.getElementById("co2").innerText = data.co2_saved + " kg";
+    document.getElementById("items").innerText = data.items_reused;
+    document.getElementById("water").innerText = data.water_saved + " L";
+    document.getElementById("energy").innerText = data.energy_saved + " kWh";
+
+    // extra: calculate trees
+    let trees = Math.floor(data.co2_saved / 20);
+    document.getElementById("trees").innerText = trees;
+
+  } catch (err) {
+    console.log("Impact load failed", err);
+  }
+}
+
+loadImpact();
+
+</script>
+
+</body>
+</html>

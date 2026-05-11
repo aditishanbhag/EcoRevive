@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Article</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.article-container {
+  max-width: 800px;
+  margin: 60px auto;
+}
+.article-container img {
+  width: 100%;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="article-container">
+  <h1 id="title"></h1>
+  <img id="image">
+  <p id="content"></p>
+</div>
+
+<script>
+
+const articles = {
+  plastic: {
+    title: "Reducing Plastic Waste",
+    image: "https://images.unsplash.com/photo-1581579185169-0dc2c7c4c2f7",
+    content: "Plastic pollution is one of the biggest environmental challenges..."
+  },
+
+  fashion: {
+    title: "Sustainable Fashion",
+    image: "https://images.unsplash.com/photo-1521334884684-d80222895322",
+    content: "Fast fashion has a huge environmental impact..."
+  },
+
+  electronics: {
+    title: "E-Waste Management",
+    image: "https://images.unsplash.com/photo-1581091870627-3d1cba9c3a8b",
+    content: "Electronic waste is growing rapidly..."
+  }
+};
+
+// GET PARAM
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const article = articles[id];
+
+if(article){
+  document.getElementById("title").innerText = article.title;
+  document.getElementById("image").src = article.image;
+  document.getElementById("content").innerText = article.content;
+
+  // OPTIONAL: give eco points
+  fetch("http://localhost:3000/api/addPoints", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ points: 5 })
+  });
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cart – EcoRevive</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+.cart-container { max-width:900px; margin:50px auto; }
+.cart-item {
+  display:flex; gap:20px; align-items:center;
+  background:white; padding:15px; margin-bottom:15px;
+  border-radius:12px;
+}
+.cart-item img { width:80px; height:80px; object-fit:cover; border-radius:8px; }
+.qty-btn { padding:4px 10px; margin:0 5px; }
+.summary { margin-top:30px; padding:20px; background:white; border-radius:12px; }
+.checkout-btn { width:100%; padding:12px; background:#2fbf71; color:white; border:none; }
+</style>
+
+</head>
+
+<body>
+
+<div class="cart-container">
+<h1>🛒 Your Cart</h1>
+
+<div id="cartItems"></div>
+
+<div class="summary">
+  <h2 id="total"></h2>
+  <button onclick="checkout()">Proceed to Checkout</button>
+</div>
+</div>
+
+<script>
+function loadCart(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let container = document.getElementById("cartItems");
+  container.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+
+    container.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.image}">
+        <div style="flex:1">
+          <h3>${item.name}</h3>
+          <p>₹${item.price}</p>
+          <div>
+            <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+            ${item.qty}
+            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+          </div>
+        </div>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function changeQty(index, change){
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  cart[index].qty += change;
+
+  if(cart[index].qty <= 0){
+    cart.splice(index,1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+function removeItem(index){
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  cart.splice(index,1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+async function checkout() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let total = 0;
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+
+  const res = await fetch("http://localhost:3000/api/createOrder", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ amount: total })
+  });
+
+  const order = await res.json();
+
+  const options = {
+    key: "rzp_test_ShTcQ52gv8tIPX",
+    amount: order.amount,
+    currency: "INR",
+    name: "EcoRevive",
+    description: "Sustainable Purchase",
+    order_id: order.id,
+
+    handler: async function (response) {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let items = cart.length;
+  let co2 = items * 20;
+  let water = items * 50;
+  let energy = items * 30;
+
+  await fetch("http://localhost:3000/api/updateImpact", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ items, co2, water, energy })
+  });
+
+  alert("Payment Successful 🌿 Impact Updated!");
+
+  localStorage.removeItem("cart");
+  location.reload();
+},
+
+    theme: {
+      color: "#2fbf71"
+    }
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+}
+
+loadCart();
+</script>
+
+</body>
+</html>

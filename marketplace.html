@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace – EcoRevive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <a href="marketplace.html" class="left-section">
+    <img src="logo1.png" class="logo-img">
+    <div class="logo-text">EcoRevive</div>
+  </a>
+
+  <div class="menu">
+    <a href="marketplace.html" class="active">Marketplace</a>
+    <a href="awareness.html">Awareness Hub</a>
+    <a href="tracker.html">Impact Tracker</a>
+    <a href="cart.html">Cart 🛒</a>
+  </div>
+
+  <div class="sign_in" id="navAuth">
+  <a href="login.html">Sign In</a>
+  <a href="signup.html" class="btn">Get Started</a>
+</div>
+</div>
+
+<!-- HERO -->
+<div class="marketplace-hero">
+  <h1>Sustainable <span>Marketplace</span></h1>
+  <p>Discover pre-owned treasures at affordable prices.</p>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <button class="filter-btn active-filter">All</button>
+  <button class="filter-btn">Fashion</button>
+  <button class="filter-btn">Electronics</button>
+  <button class="filter-btn">Furniture</button>
+  <button class="filter-btn">Books</button>
+  <button class="filter-btn">Sports</button>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products-grid" id="productsGrid">
+
+  <!-- 1 -->
+  <div class="product-card" data-category="fashion">
+    <div class="product-image">
+      <img src="https://preview--eco-revive-reuse.lovable.app/assets/marketplace-leather-jacket-B69PI96f.jpg">
+    </div>
+    <div class="product-info">
+      <h3>Vintage Leather Jacket</h3>
+      <p class="price">₹3750</p>
+      <button onclick="addToCart('Vintage Leather Jacket',3750,'https://preview--eco-revive-reuse.lovable.app/assets/marketplace-leather-jacket-B69PI96f.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="product-card" data-category="electronics">
+    <div class="product-image">
+      <img src="https://preview--eco-revive-reuse.lovable.app/assets/marketplace-iphone-CAOncGGi.jpg">
+    </div>
+    <div class="product-info">
+      <h3>iPhone 12 – Unlocked</h3>
+      <p class="price">₹29000</p>
+      <button onclick="addToCart('iPhone 12 – Unlocked',29000,'https://preview--eco-revive-reuse.lovable.app/assets/marketplace-iphone-CAOncGGi.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="product-card" data-category="furniture">
+    <div class="product-image">
+      <img src="https://preview--eco-revive-reuse.lovable.app/assets/marketplace-dining-table-BcF_BT4O.jpg">
+    </div>
+    <div class="product-info">
+      <h3>Designer Dining Table</h3>
+      <p class="price">₹16500</p>
+      <button onclick="addToCart('Designer Dining Table',16500,'https://preview--eco-revive-reuse.lovable.app/assets/marketplace-dining-table-BcF_BT4O.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="product-card" data-category="electronics">
+    <div class="product-image">
+      <img src="https://preview--eco-revive-reuse.lovable.app/assets/marketplace-camera-DChnnvW2.jpg">
+    </div>
+    <div class="product-info">
+      <h3>Canon DSLR Camera</h3>
+      <p class="price">₹23000</p>
+      <button onclick="addToCart('Canon DSLR Camera',23000,'https://preview--eco-revive-reuse.lovable.app/assets/marketplace-camera-DChnnvW2.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="product-card" data-category="sports">
+    <div class="product-image">
+      <img src="https://preview--eco-revive-reuse.lovable.app/assets/marketplace-record-player-ByFrrl_x.jpg">
+    </div>
+    <div class="product-info">
+      <h3>Mountain Bicycle</h3>
+      <p class="price">₹8500</p>
+      <button onclick="addToCart('Mountain Bicycle',8500,'https://preview--eco-revive-reuse.lovable.app/assets/marketplace-record-player-ByFrrl_x.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 6 -->
+<div class="product-card" data-category="furniture">
+  <div class="product-image">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMJ-OPY5cm56hdhPN7VM5S9rES1fj8ldiAgw&s">
+  </div>
+  <div class="product-info">
+    <h3>Wooden Study Chair</h3>
+    <p class="price">₹2800</p>
+    <button onclick="addToCart(
+      'Wooden Study Chair',
+      2800,
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMJ-OPY5cm56hdhPN7VM5S9rES1fj8ldiAgw&s'
+    )">
+      Add to Cart
+    </button>
+  </div>
+</div>
+
+  <!-- 7 -->
+  <div class="product-card" data-category="books">
+    <div class="product-image">
+      <img src="https://preview--eco-revive-reuse.lovable.app/assets/marketplace-books-Sls5Y86o.jpg">
+    </div>
+    <div class="product-info">
+      <h3>Engineering Books Set</h3>
+      <p class="price">₹1200</p>
+      <button onclick="addToCart('Engineering Books Set',1200,'https://preview--eco-revive-reuse.lovable.app/assets/marketplace-books-Sls5Y86o.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="product-card" data-category="sports">
+    <div class="product-image">
+      <img src="https://preview--eco-revive-reuse.lovable.app/assets/marketplace-badminton-GAm5bEcO.jpg">
+    </div>
+    <div class="product-info">
+      <h3>Badminton Racket Set</h3>
+      <p class="price">₹1650</p>
+      <button onclick="addToCart('Badminton Racket Set',1650,'https://preview--eco-revive-reuse.lovable.app/assets/marketplace-badminton-GAm5bEcO.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="product-card" data-category="sports">
+    <div class="product-image">
+      <img src="https://preview--eco-revive-reuse.lovable.app/assets/marketplace-yoga-set-Dc7UtLGN.jpg">
+    </div>
+    <div class="product-info">
+      <h3>Complete Yoga Set</h3>
+      <p class="price">₹1500</p>
+      <button onclick="addToCart('Complete Yoga Set',1500,'https://preview--eco-revive-reuse.lovable.app/assets/marketplace-yoga-set-Dc7UtLGN.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- SELL SECTION -->
+<div class="sell-section">
+  <h2>Have items to sell?</h2>
+  <button onclick="openSellForm()">Start Selling</button>
+</div>
+
+<!-- MODAL -->
+<div id="sellModal" style="display:none;">
+  <div style="background:white;padding:20px;">
+    <h3>Add Product</h3>
+    <input id="name" placeholder="Product Name"><br>
+    <input id="price" placeholder="Price"><br>
+    <select id="category">
+      <option>fashion</option>
+      <option>electronics</option>
+      <option>furniture</option>
+      <option>books</option>
+      <option>sports</option>
+    </select><br>
+    <button onclick="submitProduct()">Submit</button>
+    <button onclick="closeSellForm()">Close</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© EcoRevive</p>
+</footer>
+
+<script>
+function addToCart(name, price, image) {
+
+  // check login
+  if (!localStorage.getItem("loggedIn")) {
+    // remember where user came from
+    localStorage.setItem("redirectAfterLogin", "marketplace.html");
+
+    // go to login page
+    window.location.href = "login.html";
+    return;
+  }
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.qty = (existing.qty || 0) + 1;
+  } else {
+    cart.push({ name, price, image, qty: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to cart!");
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    let cat=btn.innerText.toLowerCase();
+    document.querySelectorAll('.product-card').forEach(p=>{
+      p.style.display=(cat==='all'||p.dataset.category===cat)?'block':'none';
+    });
+  };
+});
+
+function openSellForm(){ sellModal.style.display="block"; }
+function closeSellForm(){ sellModal.style.display="none"; }
+</script>
+
+</body>
+</html>
