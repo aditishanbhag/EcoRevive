@@ -1,6 +1,6 @@
-# 🌿 EcoRevive
+# EcoRevive
 
-A sustainable marketplace web app where users can buy and sell eco-friendly, reused, and upcycled products. Users earn EcoPoints for engaging with the platform — through purchases, reading awareness articles, and tracking their environmental impact.
+A sustainable marketplace web app where users can buy and sell eco friendly, reused, and upcycled products. Users earn EcoPoints for engaging with the platform, through purchases, reading awareness articles, and tracking their environmental impact.
 
 ---
 
@@ -8,7 +8,7 @@ A sustainable marketplace web app where users can buy and sell eco-friendly, reu
 
 - User registration and login with bcrypt password hashing
 - Marketplace to browse and purchase eco-friendly products
-- EcoPoints system — earn points by reading articles, spend them on purchases
+- EcoPoints system: earn points by reading articles, spend them on purchases
 - Environmental impact tracker showing CO₂, water, and energy saved
 - Awareness articles page with educational content
 - Razorpay payment integration
